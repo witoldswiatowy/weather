@@ -10,8 +10,8 @@ public class UserInterface {
         System.out.println("Aplikacja jest uruchomiona\n");
 
         while (true) {
-            System.out.println("Witaj w aplikacji pogodowej");
-            System.out.println("Co chcesz zrobić?");
+            System.out.println("Witaj w aplikacji pogodowej\n" +
+                    "Co chcesz zrobić?");
             System.out.println(" 0. Zamknać aplikację");
 
             int option = scanner.nextInt();
