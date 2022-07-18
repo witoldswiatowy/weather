@@ -26,9 +26,12 @@ public class UserInterface {
 
             switch (option) {
                 case 1:
+                    break;
                 case 2:
                     createLocation();
+                    break;
                 case 3:
+                    break;
                 case 0:
                     return;
             }
@@ -45,10 +48,8 @@ public class UserInterface {
         String country = scanner.nextLine();
         System.out.println("Podaj długość geograficzną:");
         Integer longitude = scanner.nextInt();
-        scanner.nextInt();
         System.out.println("Podaj szerokość geograficzną:");
         Integer latitude = scanner.nextInt();
-        scanner.nextInt();
         String json = String.format("{\"miasto\": \"%s\",\"region\":\"%s\",\"country\":\"%s\",\"longitude\":\"%s\",\"latitude\":\"%s\"}", miasto, region, country, longitude,latitude);
         System.out.println("Wysyłam HTTP request: " + json);
         String httpResponse = locationController.createLocation(json);

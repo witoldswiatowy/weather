@@ -1,8 +1,11 @@
 package com.sda;
 
+import lombok.RequiredArgsConstructor;
+
+@RequiredArgsConstructor
 public class LocationService {
 
-    LocationRepository locationRepository;
+    private final LocationRepository locationRepository;
     Location create(String city, String country, Integer longitude, Integer latitude) {
         validator(city, country, longitude, latitude);
 
@@ -12,7 +15,7 @@ public class LocationService {
         location.setLongitude(longitude);
         location.setLatitude(latitude);
 
-        return locationRepository.save(location);
+        return locationRepository.saveMock(location);
     }
 
     private void validator(String city, String country, Integer longitude, Integer latitude) {
