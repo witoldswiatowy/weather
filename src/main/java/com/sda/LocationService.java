@@ -15,7 +15,7 @@ public class LocationService {
         location.setLongitude(longitude);
         location.setLatitude(latitude);
 
-        return locationRepository.saveMock(location);
+        return locationRepository.save(location);
     }
 
     private void validator(String city, String country, Integer longitude, Integer latitude) {

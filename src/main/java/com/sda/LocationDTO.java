@@ -1,14 +1,13 @@
 package com.sda;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
+import lombok.*;
 
 import java.time.LocalDateTime;
 
+@Data
 @Builder
-@Getter
 @AllArgsConstructor
+@NoArgsConstructor
 public class LocationDTO {
     private Long id;
     private String city;
@@ -16,5 +15,5 @@ public class LocationDTO {
     private String country;
     private Integer longitude;
     private Integer latitude;
-    LocalDateTime createdDate;
+    private LocalDateTime createdDate;
 }

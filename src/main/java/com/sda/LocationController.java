@@ -20,10 +20,10 @@ public class LocationController {
                             locationDTO.getLatitude());
             LocationDTO response = mapToLocationDTO(location);
             return objectMapper.writeValueAsString(response);
-//        } catch (JsonProcessingException e) {
-//            return String.format("{\"errorMessage\": \"%s\"}", e.getMessage()); //tak było w diary Michała Paukszto
         } catch (JsonProcessingException e) {
-            throw new RuntimeException(e);                  //todo przy diary było inaczej, sprawdzic
+            return String.format("{\"errorMessage\": \"%s\"}", e.getMessage()); //tak było w diary Michała Paukszto
+//        } catch (JsonProcessingException e) {
+//            throw new RuntimeException(e);                  //todo przy diary było inaczej, sprawdzic
         }
     }
 

@@ -15,6 +15,7 @@ import java.time.LocalDateTime;
 @Setter
 @NoArgsConstructor
 public class Location {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -23,5 +24,5 @@ public class Location {
     private String country;
     private Integer longitude;
     private Integer latitude;
-    LocalDateTime createdDate;
+    private LocalDateTime createdDate;
 }
