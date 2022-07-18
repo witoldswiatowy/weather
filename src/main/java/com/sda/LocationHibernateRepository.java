@@ -25,8 +25,8 @@ public class LocationHibernateRepository implements LocationRepository {
         }
     }
 
-        public Location saveMock(Location location) {  //TODO mock na mainie
-        location.setId(1L);
-        return location;
-    }
+//        public Location saveMock(Location location) {  //TODO mock na mainie
+//        location.setId(1L);
+//        return location;
+//    }
 }
