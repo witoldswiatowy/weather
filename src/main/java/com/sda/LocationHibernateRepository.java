@@ -24,4 +24,9 @@ public class LocationHibernateRepository implements LocationRepository {
             throw new RuntimeException("Operacja na bazie danych nie powiodła się");
         }
     }
+
+        public Location saveMock(Location location) {  //TODO mock na mainie
+        location.setId(1L);
+        return location;
+    }
 }

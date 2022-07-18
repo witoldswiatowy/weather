@@ -21,7 +21,8 @@ public class Application {
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 
-        LocationRepository locationRepository = new LocationHibernateRepository(sessionFactory);
+//        LocationRepository locationRepository = new LocationHibernateRepository(sessionFactory); //TODO mock na mainie
+        LocationHibernateRepository locationRepository = new LocationHibernateRepository(sessionFactory);
         LocationService locationService = new LocationService(locationRepository);
         LocationController locationController = new LocationController(objectMapper, locationService);
         UserInterface userInterface = new UserInterface(locationController);
