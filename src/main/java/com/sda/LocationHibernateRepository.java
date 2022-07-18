@@ -5,6 +5,8 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
+import java.util.Optional;
+
 @RequiredArgsConstructor
 public class LocationHibernateRepository implements LocationRepository {
 
@@ -23,6 +25,11 @@ public class LocationHibernateRepository implements LocationRepository {
             transaction.rollback();
             throw new RuntimeException("Operacja na bazie danych nie powiodła się");
         }
+    }
+
+    @Override
+    public Optional<Location> findById(Long id) {
+        return Optional.empty();
     }
 
 //        public Location saveMock(Location location) {  //TODO mock na mainie

@@ -6,6 +6,8 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
+import java.util.Optional;
+
 public interface LocationRepository {
 
 //    private final SessionFactory sessionFactory;
@@ -16,6 +18,8 @@ public interface LocationRepository {
 //    }
 
     Location save(Location location);
+
+    Optional<Location> findById(Long id);
 
 //        SessionFactory sessionFactory = HibernateUtils.getSessionFactory();
 //

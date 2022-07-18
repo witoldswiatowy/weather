@@ -2,6 +2,9 @@ package com.sda;
 
 import lombok.RequiredArgsConstructor;
 
+import java.util.List;
+import java.util.Optional;
+
 @RequiredArgsConstructor
 public class LocationService {
 
@@ -39,5 +42,11 @@ public class LocationService {
         if (latitude < -90 || latitude > 90) {
             throw new IllegalArgumentException("Szerokość geograficzna musu mieścić się w przedziale od -90 do 90");
         }
+    }
+
+    Long id = 10L;
+    public List<Location> getAll() {
+        Optional<Location> optionalLocation = locationRepository.findById(id);
+        return null;
     }
 }

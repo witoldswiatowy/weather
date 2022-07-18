@@ -4,6 +4,8 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 
+import java.util.List;
+
 @RequiredArgsConstructor
 public class LocationController {
 
@@ -36,5 +38,10 @@ public class LocationController {
                 .longitude(location.getLongitude())
                 .latitude(location.getLatitude())
                 .build();
+    }
+
+    public String getLocation() {
+        List<Location> listOfAllLocation = locationService.getAll();
+        return null;
     }
 }
