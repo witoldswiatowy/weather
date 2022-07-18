@@ -41,7 +41,12 @@ public class LocationController {
     }
 
     public String getLocation() {
-        List<Location> listOfAllLocation = locationService.getAll();
+        try {
+            List<Location> listOfAllLocation = locationService.getAll();
         return null;
+        }catch (Exception e){
+            return String.format("{\"errorMessage\": \"%s\"}", e.getMessage());
+        }//todo dokończyć !!!!!!!!!
     }
+
 }

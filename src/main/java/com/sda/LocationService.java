@@ -44,9 +44,7 @@ public class LocationService {
         }
     }
 
-    Long id = 10L;
     public List<Location> getAll() {
-        Optional<Location> optionalLocation = locationRepository.findById(id);
-        return null;
+        return locationRepository.findAll();
     }
 }
