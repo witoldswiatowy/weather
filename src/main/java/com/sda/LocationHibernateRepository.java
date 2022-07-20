@@ -37,7 +37,7 @@ public class LocationHibernateRepository implements LocationRepository {
             Query<Location> locationQuery = session.createQuery("SELECT DISTINCT l FROM Location l", Location.class);
             List<Location> resultLocations = locationQuery.getResultList();
             transaction.commit();
-            resultLocations.forEach(System.out::println);
+            resultLocations.forEach(System.out::println); // todo remove it
             return resultLocations;
         } catch (Exception e) {
             Transaction transaction = session.getTransaction();
@@ -61,8 +61,4 @@ public class LocationHibernateRepository implements LocationRepository {
             return Optional.empty();
         }
     }
-//        public Location saveMock(Location location) {  //TODO mock na mainie
-//        location.setId(1L);
-//        return location;
-//    }
 }

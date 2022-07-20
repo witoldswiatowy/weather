@@ -9,7 +9,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.catchThrowable;
 import static org.junit.jupiter.api.Assertions.*;
 
-class ApplicationTest {
+class ApplicationTest { // todo rename to eg. LocationTest, LocationServiceTest
 
     LocationService locationService;
 
@@ -25,7 +25,8 @@ class ApplicationTest {
     @Test
     void createLocation_shouldReturnsCorrectLocationObject() {
         // when
-        Location location = locationService.create("Środa", "Polska", 52, 17);
+        // todo provide region
+        Location location = locationService.create("Środa", "Polska", null, 52, 17);
         // then
         assertThat(location.getId()).isNotNull();
         assertThat(location.getCity()).isEqualTo("Środa");
@@ -34,10 +35,12 @@ class ApplicationTest {
         assertThat(location.getLatitude()).isEqualTo(17);
     }
 
+    // todo add createLocation_whenRegionIsNull_shouldReturnsCorrectLocationObject
+
     @Test
-    void createLocation_ShuldThrowsAnExceptionWhenCityIsNull() {
+    void createLocation_ShouldThrowsAnExceptionWhenCityIsNull() {
         // when
-        Throwable throwable = catchThrowable(() -> locationService.create(null, "Polska", 52, 17));
+        Throwable throwable = catchThrowable(() -> locationService.create(null, "Polska", null, 52, 17));
 
         // then
         assertThat(throwable).isNotNull();
@@ -45,4 +48,8 @@ class ApplicationTest {
         assertThat(throwable).isExactlyInstanceOf(IllegalArgumentException.class);
     }
 
+    // todo add createLocation_ShouldThrowsAnExceptionWhenCountryIsNull
+    // todo add createLocation_ShouldThrowsAnExceptionWhenLongitudeIsNull
+    // todo add createLocation_ShouldThrowsAnExceptionWhenLatitudeIsNull
+    // todo add createLocation_ShouldThrowsAnExceptionWhenLatitudeIsLowerThan181 ...
 }

@@ -3,14 +3,13 @@ package com.sda;
 import lombok.RequiredArgsConstructor;
 
 import java.util.List;
-import java.util.Optional;
 
 @RequiredArgsConstructor
 public class LocationService {
 
-    private final LocationRepository locationRepository;//TODO mock na mainie
-//    private final LocationHibernateRepository locationRepository;
-    Location create(String city, String country, Integer longitude, Integer latitude) {
+    private final LocationRepository locationRepository; // TODO mock na mainie
+
+    Location create(String city, String country, String region, Integer longitude, Integer latitude) {
         validator(city, country, longitude, latitude);
 
         Location location = new Location();
@@ -19,8 +18,9 @@ public class LocationService {
         location.setLongitude(longitude);
         location.setLatitude(latitude);
 
-        return locationRepository.save(location);//TODO mock na mainie
-//        return locationRepository.saveMock(location);
+        // todo take region value into account
+
+        return locationRepository.save(location); // TODO mock na mainie
     }
 
     private void validator(String city, String country, Integer longitude, Integer latitude) {
