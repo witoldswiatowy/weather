@@ -1,5 +1,8 @@
 package com.sda;
 
+import com.sda.lacation.Location;
+import com.sda.lacation.LocationRepository;
+
 import java.util.List;
 import java.util.Optional;
 

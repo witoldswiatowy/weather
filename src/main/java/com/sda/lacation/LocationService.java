@@ -1,5 +1,7 @@
-package com.sda;
+package com.sda.lacation;
 
+import com.sda.lacation.Location;
+import com.sda.lacation.LocationRepository;
 import lombok.RequiredArgsConstructor;
 
 import java.util.List;
@@ -7,7 +9,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class LocationService {
 
-    private final LocationRepository locationRepository; // TODO mock na mainie
+    private final LocationRepository locationRepository; // todo mock na mainie
 
     Location create(String city, String country, String region, Integer longitude, Integer latitude) {
         validator(city, country, longitude, latitude);
@@ -15,12 +17,11 @@ public class LocationService {
         Location location = new Location();
         location.setCity(city);
         location.setCountry(country);
+        location.setRegion(region);
         location.setLongitude(longitude);
         location.setLatitude(latitude);
 
-        // todo take region value into account
-
-        return locationRepository.save(location); // TODO mock na mainie
+        return locationRepository.save(location); // todo mock na mainie
     }
 
     private void validator(String city, String country, Integer longitude, Integer latitude) {

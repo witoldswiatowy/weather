@@ -1,10 +1,6 @@
-package com.sda;
+package com.sda.lacation;
 
-import lombok.AllArgsConstructor;
-import lombok.RequiredArgsConstructor;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
+import com.sda.lacation.Location;
 
 import java.util.List;
 import java.util.Optional;

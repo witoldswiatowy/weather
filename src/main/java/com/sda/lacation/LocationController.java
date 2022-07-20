@@ -1,4 +1,4 @@
-package com.sda;
+package com.sda.lacation;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -24,8 +24,7 @@ public class LocationController {
                     locationDTO.getLatitude());
             LocationDTO response = mapToLocationDTO(location);
             return objectMapper.writeValueAsString(response);
-        } catch (
-                JsonProcessingException e) { // todo add IllegalArgumentException handling (JsonProcessingException | IllegalArgumentException e)
+        } catch (JsonProcessingException | IllegalArgumentException e) {
             return String.format("{\"errorMessage\": \"%s\"}", e.getMessage()); //tak było w diary Michała Paukszto
         }
     }
@@ -42,7 +41,7 @@ public class LocationController {
     }
 
     //todo dokończyć !!!!!!!!!
-    public String getLocation() { // todo rename to getLocations
+    public String getLocations() {
         try {
             List<Location> listOfAllLocation = locationService.getAll();
             List<LocationDTO> listOfAllLocationDTO = listOfAllLocation.stream()

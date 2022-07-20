@@ -1,8 +1,12 @@
-package com.sda;
+package com.sda.application;
 
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.sda.lacation.LocationController;
+import com.sda.lacation.LocationHibernateRepository;
+import com.sda.lacation.LocationRepository;
+import com.sda.lacation.LocationService;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;

@@ -1,5 +1,6 @@
-package com.sda;
+package com.sda.application;
 
+import com.sda.lacation.LocationController;
 import lombok.RequiredArgsConstructor;
 
 import java.util.Scanner;

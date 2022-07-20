@@ -1,4 +1,4 @@
-package com.sda;
+package com.sda.lacation;
 
 import lombok.RequiredArgsConstructor;
 import org.hibernate.Session;
