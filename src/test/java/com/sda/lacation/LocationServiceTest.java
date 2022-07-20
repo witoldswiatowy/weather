@@ -25,7 +25,6 @@ class LocationServiceTest {
     @Test
     void createLocation_shouldReturnsCorrectLocationObject() {
         // when
-        // todo provide region
         Location location = locationService.create("Środa", "Polska", "Wielkopolska", 52, 17);
         // then
         assertThat(location.getId()).isNotNull();
@@ -39,7 +38,6 @@ class LocationServiceTest {
     @Test
     void createLocation_whenRegionIsNull_shouldReturnsCorrectLocationObject() {
         // when
-        // todo provide region
         Location location = locationService.create("Środa", "Polska", null, 52, 17);
         // then
         assertThat(location.getId()).isNotNull();
@@ -53,7 +51,6 @@ class LocationServiceTest {
     void createLocation_ShouldThrowsAnExceptionWhenCityIsNull() {
         // when
         Throwable throwable = catchThrowable(() -> locationService.create(null, "Polska", null, 52, 17));
-
         // then
         assertThat(throwable).isNotNull();
         assertThat(throwable.getMessage()).contains("city");
@@ -61,25 +58,72 @@ class LocationServiceTest {
     }
 
     @Test
-    void createLocation_ShouldThrowsAnExceptionWhenLongitudeIsNull(){
-        //given
+    void createLocation_ShouldThrowsAnExceptionWhenLongitudeIsNull() {
         //when
+        Throwable throwable = catchThrowable(() -> locationService.create("Środa", "Polska", "Wielkopolska", null, 17));
         //then
+        assertThat(throwable).isNotNull();
+        assertThat(throwable.getMessage()).contains("longitude");
+        assertThat(throwable).isExactlyInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
-    void createLocation_ShouldThrowsAnExceptionWhenLatitudeIsNull(){
-        //given
+    void createLocation_ShouldThrowsAnExceptionWhenLatitudeIsNull() {
         //when
+        Throwable throwable = catchThrowable(() -> locationService.create("Środa", "Polska", "Wielkopolska", 52, null));
         //then
+        assertThat(throwable).isNotNull();
+        assertThat(throwable.getMessage()).contains("latitude");
+        assertThat(throwable).isExactlyInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
-    void createLocation_ShouldThrowsAnExceptionWhenLatitudeIsLowerThan181(){
-        //given
+    void createLocation_ShouldThrowsAnExceptionWhenLatitudeIsLowerThanMinus181() {
         //when
+        Throwable throwable = catchThrowable(() -> locationService.create("Środa", "Polska", "Wielkopolska", -181, 17));
         //then
+        assertThat(throwable).isNotNull();
+        assertThat(throwable.getMessage()).contains("Długość");
+        assertThat(throwable).isExactlyInstanceOf(IllegalArgumentException.class);
     }
 
-    // todo add createLocation_ShouldThrowsAnExceptionWhenLatitudeIsLowerThan181 ...
+    @Test
+    void createLocation_ShouldThrowsAnExceptionWhenLatitudeIsBiggerThan181() {
+        //when
+        Throwable throwable = catchThrowable(() -> locationService.create("Środa", "Polska", "Wielkopolska", 181, 17));
+        //then
+        assertThat(throwable).isNotNull();
+        assertThat(throwable.getMessage()).contains("Długość");
+        assertThat(throwable).isExactlyInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void createLocation_ShouldThrowsAnExceptionWhenLongitudeIsLowerThanMinus91() {
+        //when
+        Throwable throwable = catchThrowable(() -> locationService.create("Środa", "Polska", "Wielkopolska", 52, -91));
+        //then
+        assertThat(throwable).isNotNull();
+        assertThat(throwable.getMessage()).contains("Szerokość");
+        assertThat(throwable).isExactlyInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void createLocation_ShouldThrowsAnExceptionWhenLongitudeIsBiggerThan91() {
+        //when
+        Throwable throwable = catchThrowable(() -> locationService.create("Środa", "Polska", "Wielkopolska", 17, 91));
+        //then
+        assertThat(throwable).isNotNull();
+        assertThat(throwable.getMessage()).contains("Szerokość");
+        assertThat(throwable).isExactlyInstanceOf(IllegalArgumentException.class);
+    }
+    @Test
+    void createLocation_ShouldThrowsAnExceptionWhenCityIsBlank() {
+        //when
+        Throwable throwable = catchThrowable(() -> locationService.create("     ", "Polska", "Wielkopolska", 52, 17));
+        //then
+        assertThat(throwable).isNotNull();
+        assertThat(throwable.getMessage()).contains("city");
+        assertThat(throwable).isExactlyInstanceOf(IllegalArgumentException.class);
+    }
+    //todo adding test cases with blank fielde i other parameters like top example
 }
