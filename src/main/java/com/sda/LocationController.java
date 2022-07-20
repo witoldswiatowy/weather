@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 public class LocationController {
@@ -18,6 +19,7 @@ public class LocationController {
             Location location = locationService
                     .create(locationDTO.getCity(),
                             locationDTO.getCountry(),
+//                            locationDTO.getRegion(),
                             locationDTO.getLongitude(),
                             locationDTO.getLatitude());
             LocationDTO response = mapToLocationDTO(location);
@@ -43,10 +45,24 @@ public class LocationController {
     public String getLocation() {
         try {
             List<Location> listOfAllLocation = locationService.getAll();
-        return null;
+            List<LocationDTO> listOfAllLocationDTO = listOfAllLocation.stream()
+                    .map(this::mapingToLocationDTO)
+                    .collect(Collectors.toList());
+            return objectMapper.writeValueAsString(listOfAllLocationDTO);
         }catch (Exception e){
             return String.format("{\"errorMessage\": \"%s\"}", e.getMessage());
         }//todo dokończyć !!!!!!!!!
+    }
+
+    LocationDTO mapingToLocationDTO(Location location){
+        return LocationDTO.builder()
+                .id(location.getId())
+                .city(location.getCity())
+                .region(location.getRegion())
+                .country(location.getCountry())
+                .longitude(location.getLongitude())
+                .latitude(location.getLatitude())
+                .build();
     }
 
 }
