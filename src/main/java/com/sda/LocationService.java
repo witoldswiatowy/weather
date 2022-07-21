@@ -5,8 +5,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class LocationService {
 
-    private final LocationRepository locationRepository;//TODO mock na mainie
-//    private final LocationHibernateRepository locationRepository;
+    private final LocationRepository locationRepository;
     Location create(String city, String country, Integer longitude, Integer latitude) {
         validator(city, country, longitude, latitude);
 
@@ -15,9 +14,9 @@ public class LocationService {
         location.setCountry(country);
         location.setLongitude(longitude);
         location.setLatitude(latitude);
+        location.setRegion(null);
 
-        return locationRepository.save(location);//TODO mock na mainie
-//        return locationRepository.saveMock(location);
+        return locationRepository.save(location);
     }
 
     private void validator(String city, String country, Integer longitude, Integer latitude) {
@@ -30,13 +29,13 @@ public class LocationService {
         if (longitude == null) {
             throw new IllegalArgumentException("Pole longitude nie może być puste");
         }
-        if (longitude < -180 || longitude > 180) {
+        if (longitude > 180 || longitude < -180) {
             throw new IllegalArgumentException("Długość geograficzna musu mieścić się w przedziale od -180 do 180");
         }
         if (latitude == null) {
             throw new IllegalArgumentException("Pole latitude nie może być puste");
         }
-        if (latitude < -90 || latitude > 90) {
+        if (latitude > 90 || latitude < -90) {
             throw new IllegalArgumentException("Szerokość geograficzna musu mieścić się w przedziale od -90 do 90");
         }
     }

@@ -15,8 +15,7 @@ public class UserInterface {
         System.out.println("Aplikacja jest uruchomiona\n");
 
         while (true) {
-            System.out.println("Witaj w aplikacji pogodowej\n" +
-                    "Co chcesz zrobić?");
+            System.out.println("Witaj w aplikacji pogodowej\nCo chcesz zrobić?");
             System.out.println(" 1. Pokaż wszystkie lokalizacji");
             System.out.println(" 2. Dodaj nową loklizację ");
             System.out.println(" 3. Pobierz pogodę dla... ");

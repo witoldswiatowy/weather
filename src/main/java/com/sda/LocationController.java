@@ -7,8 +7,8 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class LocationController {
 
-        private final ObjectMapper objectMapper;
-        private final LocationService locationService;
+    private final ObjectMapper objectMapper;
+    private final LocationService locationService;
 
     public String createLocation(String json) {
         try {
@@ -18,23 +18,12 @@ public class LocationController {
                             locationDTO.getCountry(),
                             locationDTO.getLongitude(),
                             locationDTO.getLatitude());
-            LocationDTO response = mapToLocationDTO(location);
+            LocationDTO response = LocationMapper.mapToLocationDTO(location);
             return objectMapper.writeValueAsString(response);
         } catch (JsonProcessingException e) {
             return String.format("{\"errorMessage\": \"%s\"}", e.getMessage()); //tak było w diary Michała Paukszto
 //        } catch (JsonProcessingException e) {
 //            throw new RuntimeException(e);                  //todo przy diary było inaczej, sprawdzic
         }
-    }
-
-    private LocationDTO mapToLocationDTO(Location location) {
-        return LocationDTO.builder()
-                .id(location.getId())
-                .city(location.getCity())
-                .region(location.getRegion())
-                .country(location.getCountry())
-                .longitude(location.getLongitude())
-                .latitude(location.getLatitude())
-                .build();
     }
 }
